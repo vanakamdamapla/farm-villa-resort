@@ -1,0 +1,75 @@
+{
+  "villaName": "The Farm Villa - Cm Residency",
+  "currency": "₹",
+  "pricing": {
+    "weekdayPrice": "12,000 / night",
+    "weekendPrice": "16,000 / night"
+  },
+  "contact": {
+    "phone": "+91 84891 46404",
+    "whatsappNumber": "918489146404",
+    "email": "vigneesh2630@gmail.com",
+    "address": "The Farm VILLA - CM RESIDENCY, Pondicherry",
+    "googleMapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15651.981881682664!2d79.7567462!3d11.9114017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a53610061409ed9%3A0xaf2afc0fcbf0ce5d!2sThe%20Farm%20VILLA%20-%20CM%20RESIDENCY!5e0!3m2!1sen!2sin!4v1720165842851!5m2!1sen!2sin"
+  },
+  "offers": [
+    {
+      "title": "Weekday Special Offer",
+      "discount": "25% OFF",
+      "rules": "Book a 2-night weekday stay and receive a 25% discount on the total price."
+    },
+    {
+      "title": "Referral Discount",
+      "discount": "Flat ₹1,000 OFF",
+      "rules": "Get a direct ₹1,000 discount when referred by an existing customer."
+    },
+    {
+      "title": "Extended Luxury Escape",
+      "discount": "Stay 4, Pay 3",
+      "rules": "Book 4 nights or more, get the last night completely free."
+    }
+  ],
+  "gallery": {
+    "images": [
+      "./images/resort_image.jpg",
+      "./images/privatepool.jpg",
+      "./images/nightpool.jpg",
+      "./images/night_poolll.jpg",
+      "./images/pool2.jpg",
+      "./images/pool_open_theatre.jpg",
+      "./images/hall_projector.jpg",
+      "./images/projector.jpg",
+      "./images/hall.jpg",
+      "./images/bedrooma.jpg",
+      "./images/bedroomb.jpg"
+    ],
+    "videos": [
+      "./videos/resort.mp4"
+    ]
+  },
+  "bookedDates": [
+    "2026-07-10",
+    "2026-07-11",
+    "2026-07-18",
+    "2026-07-19",
+    "2026-07-24",
+    "2026-07-25"
+  ],
+  "testimonials": [
+    {
+      "guestName": "Rohan & Family",
+      "rating": 5,
+      "comment": "Absolutely breathtaking property! The beachfront views, private pool, and exceptional hospitality made this our best family vacation ever. Every detail felt bespoke and luxurious."
+    },
+    {
+      "guestName": "Anya Sen",
+      "rating": 5,
+      "comment": "An oasis of calm and refinement. The staff was incredibly attentive, the design is modern yet warm, and watching the sunrise from the master bedroom was unforgettable. We will be back!"
+    },
+    {
+      "guestName": "Vikram Malhotra",
+      "rating": 5,
+      "comment": "A true five-star experience. The kitchen was stocked with essentials, the infinity pool is pristine, and the direct beach access was the highlight. Ideal for hosting a private retreat."
+    }
+  ]
+}

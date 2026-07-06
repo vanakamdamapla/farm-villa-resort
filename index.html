@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Blue Horizon Villa | Luxury Private Resort</title>
+  <meta name="description" content="Experience unparalleled luxury at The Blue Horizon Villa. A premium private beachfront villa featuring infinity pool, private chef, and bespoke amenities.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            luxury: {
+              cream: '#FAF9F6',
+              ivory: '#F5F2EB',
+              slate: '#0F172A',
+              gold: '#D4AF37',
+              goldDark: '#AA8616',
+              goldLight: '#E8D082',
+              charcoal: '#1E293B',
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Cormorant Garamond & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons via CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom Styles for Scrollbars, Animations & Typography -->
+  <style>
+    /* Custom luxury scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF9F6;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4AF37;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #AA8616;
+    }
+
+    /* Elegant typing cursor and custom animations */
+    .fade-in {
+      animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .slide-up {
+      animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .scale-up {
+      animation: scaleUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleUp {
+      from { transform: scale(1.05); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Glassmorphism utility */
+    .glass-nav {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+    }
+
+    /* Image zoom hover effect */
+    .zoom-img {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .zoom-container:hover .zoom-img {
+      transform: scale(1.08);
+    }
+
+    /* Custom pattern background */
+    .luxury-pattern {
+      background-color: #FAF9F6;
+      background-image: radial-gradient(#d4af37 0.5px, transparent 0.5px), radial-gradient(#d4af37 0.5px, #FAF9F6 0.5px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+      opacity: 0.15;
+    }
+  </style>
+</head>
+<body class="bg-luxury-cream text-luxury-slate font-sans antialiased selection:bg-luxury-gold selection:text-luxury-slate overflow-x-hidden">
+
+  <!-- ==================== SKELETON LOADING OVERLAY ==================== -->
+  <div id="loading-overlay" class="fixed inset-0 bg-luxury-slate z-[9999] flex flex-col justify-center items-center transition-opacity duration-700">
+    <div class="relative w-24 h-24 mb-6">
+      <div class="absolute inset-0 rounded-full border-2 border-luxury-gold/20"></div>
+      <div class="absolute inset-0 rounded-full border-t-2 border-luxury-gold animate-spin"></div>
+      <div class="absolute inset-0 flex justify-center items-center">
+        <span class="font-serif text-2xl text-luxury-gold font-light">BH</span>
+      </div>
+    </div>
+    <h2 class="font-serif text-xl text-luxury-gold tracking-[0.2em] uppercase mb-2 animate-pulse">The Blue Horizon</h2>
+    <p class="font-sans text-xs text-luxury-gold/60 uppercase tracking-[0.15em] animate-pulse">Loading Luxury Experience...</p>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION SYSTEM ==================== -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-[999] flex flex-col gap-3 max-w-md w-full px-4 md:px-0"></div>
+
+  <!-- ==================== STICKY HEADER ==================== -->
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6 px-6 md:px-12 flex justify-between items-center text-white">
+    <a id="brand-logo-container" href="#" class="flex flex-col">
+      <!-- Rendered Dynamically via JS for a classic premium look -->
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-[0.2em] font-semibold text-white/90">
+      <a href="#hero" class="hover:text-luxury-gold transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-luxury-gold hover:after:w-full after:transition-all after:duration-300">Home</a>
+      <a href="#gallery" class="hover:text-luxury-gold transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-luxury-gold hover:after:w-full after:transition-all after:duration-300">Gallery</a>
+      <a href="#pricing" class="hover:text-luxury-gold transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-luxury-gold hover:after:w-full after:transition-all after:duration-300">Pricing & Offers</a>
+      <a href="#availability" class="hover:text-luxury-gold transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-luxury-gold hover:after:w-full after:transition-all after:duration-300">Availability</a>
+      <a href="#testimonials" class="hover:text-luxury-gold transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-luxury-gold hover:after:w-full after:transition-all after:duration-300">Reviews</a>
+      <a href="#contact" class="hover:text-luxury-gold transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-luxury-gold hover:after:w-full after:transition-all after:duration-300">Contact</a>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="hidden lg:flex items-center space-x-6">
+      <a id="header-whatsapp-cta" href="#" target="_blank" class="px-6 py-2.5 bg-transparent border border-luxury-gold text-luxury-gold text-xs uppercase tracking-[0.2em] font-semibold hover:bg-luxury-gold hover:text-luxury-slate transition-all duration-300 rounded-sm">
+        Book Now
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="lg:hidden text-white hover:text-luxury-gold focus:outline-none transition-colors duration-300" aria-label="Toggle Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 bg-luxury-slate/95 z-[99] lg:hidden flex flex-col justify-center items-center text-center translate-x-full transition-transform duration-500 ease-in-out">
+    <button id="mobile-close-btn" class="absolute top-8 right-8 text-white hover:text-luxury-gold focus:outline-none" aria-label="Close Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <nav class="flex flex-col space-y-6 text-xl uppercase tracking-[0.2em] font-light text-white">
+      <a href="#hero" class="mobile-link hover:text-luxury-gold transition-all duration-300">Home</a>
+      <a href="#gallery" class="mobile-link hover:text-luxury-gold transition-all duration-300">Gallery</a>
+      <a href="#pricing" class="mobile-link hover:text-luxury-gold transition-all duration-300">Pricing & Offers</a>
+      <a href="#availability" class="mobile-link hover:text-luxury-gold transition-all duration-300">Availability</a>
+      <a href="#testimonials" class="mobile-link hover:text-luxury-gold transition-all duration-300">Reviews</a>
+      <a href="#contact" class="mobile-link hover:text-luxury-gold transition-all duration-300">Contact</a>
+    </nav>
+    <div class="mt-12">
+      <a id="mobile-whatsapp-cta" href="#" target="_blank" class="px-8 py-3.5 bg-luxury-gold text-luxury-slate text-xs uppercase tracking-[0.2em] font-semibold hover:bg-luxury-goldLight transition-colors duration-300 rounded-sm">
+        Connect on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- Sliding Image Background Wrapper (100% dynamic from JSON gallery) -->
+    <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-all duration-1000 scale-up select-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-luxury-slate/70 via-luxury-slate/50 to-luxury-cream"></div>
+
+    <div class="relative z-10 text-center max-w-4xl px-6 md:px-12 flex flex-col items-center">
+      <span class="text-[0.7rem] md:text-[0.8rem] uppercase tracking-[0.4em] text-luxury-gold font-bold mb-4 slide-up">
+        An Exclusive Coastal Sanctuary
+      </span>
+      <h1 id="hero-title" class="font-serif text-5xl md:text-7xl lg:text-8xl text-white font-light tracking-wide mb-6 leading-tight slide-up">
+        The Blue Horizon Villa
+      </h1>
+      <div class="w-20 h-[1px] bg-luxury-gold my-4 slide-up"></div>
+      <p class="font-light text-sm md:text-base text-white/90 tracking-wide max-w-xl mb-8 leading-relaxed slide-up">
+        Immerse yourself in complete serenity, private pool luxury, and starlit cinema. Crafted for groups seeking the ultimate exclusive farm villa experience.
+      </p>
+      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 slide-up">
+        <a href="#availability" class="px-8 py-3.5 bg-luxury-gold text-luxury-slate font-semibold text-xs uppercase tracking-[0.2em] hover:bg-luxury-goldLight hover:-translate-y-[2px] active:translate-y-0 transition-all duration-300 shadow-lg shadow-luxury-gold/15 rounded-sm">
+          Check Availability
+        </a>
+        <a href="#gallery" class="px-8 py-3.5 bg-transparent border border-white text-white font-semibold text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-luxury-slate hover:-translate-y-[2px] active:translate-y-0 transition-all duration-300 rounded-sm">
+          Explore Gallery
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll Down Indicator -->
+    <a href="#highlights" class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center text-white/80 hover:text-luxury-gold transition-colors duration-300 animate-bounce">
+      <span class="text-[0.6rem] uppercase tracking-[0.3em] font-semibold mb-2">Scroll</span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </a>
+  </section>
+
+  <!-- ==================== VILLA HIGHLIGHTS ==================== -->
+  <section id="highlights" class="py-20 md:py-28 bg-luxury-cream relative">
+    <div class="absolute inset-0 luxury-pattern pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      
+      <!-- Luxury Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+        <span class="text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-luxury-gold font-bold">Uncompromising Details</span>
+        <h2 class="font-serif text-3xl md:text-5xl text-luxury-slate font-light mt-3">The Estate Amenities</h2>
+        <div class="w-12 h-[1px] bg-luxury-gold mx-auto mt-4 mb-5"></div>
+        <p class="text-sm text-luxury-slate/75 leading-relaxed font-light">
+          Enjoy unmatched privacy, modern entertainment, and a serene farm stay retreat. Our premium property includes state-of-the-art facilities tailored to host your group.
+        </p>
+      </div>
+
+      <!-- Highlights Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
+        <!-- Amenity 1 -->
+        <div class="bg-white border border-luxury-gold/10 p-8 md:p-10 hover:border-luxury-gold hover:-translate-y-[4px] transition-all duration-500 rounded-sm group">
+          <div class="text-luxury-gold text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-water-pool"></i>
+          </div>
+          <h3 class="font-serif text-lg text-luxury-slate font-semibold mb-3">Private Pool</h3>
+          <p class="text-xs text-luxury-slate/70 leading-relaxed font-light">
+            Unwind in your exclusive, beautifully designed private swimming pool, perfect for daytime fun or starlit night swims in complete seclusion.
+          </p>
+        </div>
+
+        <!-- Amenity 2 -->
+        <div class="bg-white border border-luxury-gold/10 p-8 md:p-10 hover:border-luxury-gold hover:-translate-y-[4px] transition-all duration-500 rounded-sm group">
+          <div class="text-luxury-gold text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-film"></i>
+          </div>
+          <h3 class="font-serif text-lg text-luxury-slate font-semibold mb-3">Pool Open Theatre</h3>
+          <p class="text-xs text-luxury-slate/70 leading-relaxed font-light">
+            Experience cinematic magic by the water. Watch your favorite movies projected on a large outdoor screen right by the pool edge under the open sky.
+          </p>
+        </div>
+
+        <!-- Amenity 3 -->
+        <div class="bg-white border border-luxury-gold/10 p-8 md:p-10 hover:border-luxury-gold hover:-translate-y-[4px] transition-all duration-500 rounded-sm group">
+          <div class="text-luxury-gold text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-video"></i>
+          </div>
+          <h3 class="font-serif text-lg text-luxury-slate font-semibold mb-3">Indoor Projector</h3>
+          <p class="text-xs text-luxury-slate/70 leading-relaxed font-light">
+            Gather in the spacious, air-conditioned living hall equipped with a professional high-definition projector setup for immersive movie sessions.
+          </p>
+        </div>
+
+        <!-- Amenity 4 -->
+        <div class="bg-white border border-luxury-gold/10 p-8 md:p-10 hover:border-luxury-gold hover:-translate-y-[4px] transition-all duration-500 rounded-sm group">
+          <div class="text-luxury-gold text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+            <i class="fa-solid fa-bed"></i>
+          </div>
+          <h3 class="font-serif text-lg text-luxury-slate font-semibold mb-3">Premium Bedrooms</h3>
+          <p class="text-xs text-luxury-slate/70 leading-relaxed font-light">
+            Sleep in absolute comfort in our modern, fully air-conditioned bedroom suites featuring premium linen, elegant decor, and private en-suite amenities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== IMAGE & VIDEO GALLERY ==================== -->
+  <section id="gallery" class="py-20 md:py-28 bg-luxury-slate text-white">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+        <span class="text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-luxury-gold font-bold">Visual Splendor</span>
+        <h2 class="font-serif text-3xl md:text-5xl font-light mt-3">The Gallery & Walkthrough</h2>
+        <div class="w-12 h-[1px] bg-luxury-gold mx-auto mt-4 mb-5"></div>
+        <p class="text-sm text-white/70 leading-relaxed font-light">
+          A glimpse into absolute seaside perfection. Browse our resort's exterior architecture, luxurious bedrooms, pristine grounds, and take a virtual video tour.
+        </p>
+      </div>
+
+      <!-- Photo Grid -->
+      <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <!-- Rendered Dynamically via JS -->
+      </div>
+
+      <!-- Video Tour Wrapper -->
+      <div class="mt-20">
+        <div class="text-center mb-8">
+          <span class="text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-luxury-gold font-bold">Immersive Tour</span>
+          <h3 class="font-serif text-2xl md:text-3xl font-light mt-2">Walkthrough Experience</h3>
+        </div>
+        <div class="max-w-4xl mx-auto border border-luxury-gold/30 p-2 md:p-3 bg-luxury-charcoal rounded-sm shadow-2xl">
+          <div id="video-container" class="relative w-full aspect-video bg-black overflow-hidden rounded-sm">
+            <!-- Rendered Dynamically via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GALLERY LIGHTBOX MODAL ==================== -->
+  <div id="lightbox" class="fixed inset-0 z-[1000] bg-black/95 opacity-0 pointer-events-none transition-opacity duration-300 flex justify-center items-center select-none">
+    <!-- Close button -->
+    <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-luxury-gold text-2xl focus:outline-none transition-colors duration-300" aria-label="Close Lightbox">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <!-- Prev button -->
+    <button id="lightbox-prev" class="absolute left-6 text-white hover:text-luxury-gold text-3xl focus:outline-none transition-colors duration-300" aria-label="Previous Image">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <!-- Next button -->
+    <button id="lightbox-next" class="absolute right-6 text-white hover:text-luxury-gold text-3xl focus:outline-none transition-colors duration-300" aria-label="Next Image">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+    <!-- Lightbox Image -->
+    <div class="max-w-[85vw] max-h-[85vh] flex flex-col justify-center items-center">
+      <img id="lightbox-img" src="" alt="Villa Gallery Showcase" class="max-w-full max-h-[80vh] object-contain rounded-sm select-none border border-white/10">
+      <p id="lightbox-caption" class="text-white/80 font-serif text-sm mt-4 tracking-wider"></p>
+    </div>
+  </div>
+
+  <!-- ==================== PRICING & SPECIAL OFFERS ==================== -->
+  <section id="pricing" class="py-20 md:py-28 bg-luxury-cream">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16 md:mb-20">
+        <span class="text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-luxury-gold font-bold">Luxury Within Reach</span>
+        <h2 class="font-serif text-3xl md:text-5xl text-luxury-slate font-light mt-3">Pricing & Curated Offers</h2>
+        <div class="w-12 h-[1px] bg-luxury-gold mx-auto mt-4 mb-5"></div>
+        <p class="text-sm text-luxury-slate/75 leading-relaxed font-light">
+          We invite you to experience coastal luxury. View our standard night rates and browse our seasonal promotional packages below.
+        </p>
+      </div>
+
+      <!-- Pricing Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-20">
+        <!-- Weekday Pricing Card -->
+        <div class="bg-white border border-luxury-gold/20 p-8 md:p-12 flex flex-col items-center text-center hover:border-luxury-gold hover:shadow-2xl transition-all duration-500 rounded-sm relative group overflow-hidden">
+          <span class="text-[0.6rem] uppercase tracking-[0.3em] text-luxury-slate/60 font-semibold mb-4">Monday to Thursday</span>
+          <h3 class="font-serif text-2xl text-luxury-slate font-light mb-6">Weekday Stay (4BHK)</h3>
+          <div class="w-10 h-[1px] bg-luxury-gold/40 mb-6"></div>
+          <div class="flex items-baseline mb-6">
+            <span id="weekday-currency" class="font-serif text-2xl text-luxury-gold font-light mr-1">₹</span>
+            <span id="weekday-price" class="font-serif text-5xl md:text-6xl text-luxury-slate font-light">12,000</span>
+          </div>
+          <p class="text-xs text-luxury-slate/60 tracking-wider mb-8">per night rate (excluding taxes)</p>
+          <ul class="text-xs text-luxury-slate/80 space-y-4 mb-8 text-left font-light w-full border-t border-luxury-ivory pt-6">
+            <li class="flex items-start"><i class="fa-regular fa-clock text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Check-in 11:30 AM | Check-out 11:00 AM</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-car text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Free Pondy pickups (Bus & Train) to kickstart your getaway!</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-water text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Crystal-clear chlorineless pool for guilt-free midnight dips</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-kitchen-set text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Fully loaded kitchen ready for your ultimate squad feasts</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-video text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Dual projectors (Lounge & Poolside) for epic movie nights</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-leaf text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Lush tropical greenery for those perfect vacation selfies</span></li>
+          </ul>
+        </div>
+
+        <!-- Weekend Pricing Card -->
+        <div class="bg-luxury-slate border-2 border-luxury-gold p-8 md:p-12 flex flex-col items-center text-center shadow-xl hover:shadow-2xl transition-all duration-500 rounded-sm relative overflow-hidden text-white">
+          <!-- Popular badge -->
+          <div class="absolute top-0 right-0 bg-luxury-gold text-luxury-slate text-[0.6rem] uppercase tracking-[0.2em] font-bold px-4 py-1.5 transform rotate-0 rounded-bl-sm">
+            Prime Stay
+          </div>
+          <span class="text-[0.6rem] uppercase tracking-[0.3em] text-luxury-gold font-semibold mb-4">Friday to Sunday</span>
+          <h3 class="font-serif text-2xl text-luxury-gold font-light mb-6">Weekend Stay (4BHK)</h3>
+          <div class="w-10 h-[1px] bg-luxury-gold/40 mb-6"></div>
+          <div class="flex items-baseline mb-6">
+            <span id="weekend-currency" class="font-serif text-2xl text-luxury-gold font-light mr-1">₹</span>
+            <span id="weekend-price" class="font-serif text-5xl md:text-6xl text-luxury-gold font-light">16,000</span>
+          </div>
+          <p class="text-xs text-white/50 tracking-wider mb-8">per night rate (excluding taxes)</p>
+          <ul class="text-xs text-white/80 space-y-4 mb-8 text-left font-light w-full border-t border-white/10 pt-6">
+            <li class="flex items-start"><i class="fa-regular fa-clock text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Check-in 11:30 AM | Check-out 11:00 AM</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-car text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Free Pondy pickups (Bus & Train) to kickstart your getaway!</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-water text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Crystal-clear chlorineless pool for guilt-free midnight dips</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-kitchen-set text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Fully loaded kitchen ready for your ultimate squad feasts</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-video text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Dual projectors (Lounge & Poolside) for epic movie nights</span></li>
+            <li class="flex items-start"><i class="fa-solid fa-leaf text-luxury-gold mr-3 mt-1 shrink-0"></i> <span>Lush tropical greenery for those perfect vacation selfies</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Special Offers Section -->
+      <div>
+        <div class="text-center mb-10">
+          <span class="text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-luxury-gold font-bold">Exclusive Promotions</span>
+          <h3 class="font-serif text-2xl md:text-3xl font-light mt-2 text-luxury-slate">Special Packages</h3>
+        </div>
+        
+        <!-- Offers Grid -->
+        <div id="offers-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Rendered Dynamically via JS -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== LIVE AVAILABILITY ==================== -->
+  <section id="availability" class="py-20 md:py-28 bg-luxury-slate text-white relative">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+        <span class="text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-luxury-gold font-bold">Realtime Booking Calendar</span>
+        <h2 class="font-serif text-3xl md:text-5xl font-light mt-3">Live Availability</h2>
+        <div class="w-12 h-[1px] bg-luxury-gold mx-auto mt-4 mb-5"></div>
+        <p class="text-sm text-white/70 leading-relaxed font-light">
+          Plan your escape. Consult the calendar below to check booked and vacant dates. 
+          Bookings are confirmed exclusively via Phone call or WhatsApp.
+        </p>
+      </div>
+
+      <!-- Call to Action Banner -->
+      <div class="max-w-4xl mx-auto bg-luxury-charcoal/80 border border-luxury-gold/20 p-6 md:p-8 rounded-sm mb-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
+        <div>
+          <h3 class="font-serif text-lg md:text-xl text-white font-medium mb-2">WhatsApp Direct Booking</h3>
+          <p class="text-xs text-white/70 font-light max-w-md leading-relaxed">
+            Specify your desired check-in & check-out dates and send them directly to our concierge team via WhatsApp for instant reservation.
+          </p>
+        </div>
+        <div class="flex flex-col items-center">
+          <span class="text-[0.65rem] uppercase tracking-[0.2em] font-bold text-luxury-gold mb-2">Reserve Instantly</span>
+          <span class="text-xs text-white/80 font-serif font-light italic mb-2">"Call or WhatsApp to Book"</span>
+          <a id="availability-whatsapp-cta" href="#" target="_blank" class="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold uppercase tracking-[0.2em] flex items-center gap-2 rounded-sm transition-colors duration-300">
+            <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp Concierge
+          </a>
+        </div>
+      </div>
+
+
+
+      <!-- Calendars Wrapper -->
+      <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 bg-luxury-charcoal/50 border border-white/10 p-6 md:p-10 rounded-sm">
+        
+        <!-- Current Month Calendar -->
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <h3 id="current-month-name" class="font-serif text-xl text-luxury-gold font-light tracking-wide">July 2026</h3>
+            <span class="text-[0.6rem] uppercase tracking-widest text-white/50">Current Month</span>
+          </div>
+          <div class="grid grid-cols-7 gap-2 text-center text-xs font-semibold text-white/60 mb-2 border-b border-white/5 pb-2">
+            <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+          </div>
+          <div id="current-month-days" class="grid grid-cols-7 gap-2 text-center">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Next Month Calendar -->
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <h3 id="next-month-name" class="font-serif text-xl text-luxury-gold font-light tracking-wide">August 2026</h3>
+            <span class="text-[0.6rem] uppercase tracking-widest text-white/50">Next Month</span>
+          </div>
+          <div class="grid grid-cols-7 gap-2 text-center text-xs font-semibold text-white/60 mb-2 border-b border-white/5 pb-2">
+            <div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div>
+          </div>
+          <div id="next-month-days" class="grid grid-cols-7 gap-2 text-center">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar Legend -->
+      <div class="flex justify-center gap-6 mt-8 text-xs font-light text-white/70">
+        <div class="flex items-center gap-2">
+          <span class="w-3.5 h-3.5 rounded-sm bg-white/10 border border-white/10"></span>
+          <span>Available</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-3.5 h-3.5 rounded-sm bg-luxury-slate border border-luxury-gold text-luxury-gold relative overflow-hidden" style="background-image: linear-gradient(45deg, rgba(212,175,55,0.2) 25%, transparent 25%, transparent 50%, rgba(212,175,55,0.2) 50%, rgba(212,175,55,0.2) 75%, transparent 75%, transparent);"></span>
+          <span>Occupied / Booked</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== GUEST TESTIMONIALS ==================== -->
+  <section id="testimonials" class="py-20 md:py-28 bg-luxury-cream">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-luxury-gold font-bold">Unmatched Experiences</span>
+        <h2 class="font-serif text-3xl md:text-5xl text-luxury-slate font-light mt-3">Guest Testimonials</h2>
+        <div class="w-12 h-[1px] bg-luxury-gold mx-auto mt-4 mb-5"></div>
+      </div>
+
+      <!-- Testimonial Slider Frame -->
+      <div class="max-w-4xl mx-auto relative px-10 md:px-16 py-12 md:py-16 bg-white border border-luxury-gold/15 rounded-sm shadow-xl overflow-hidden group">
+        <!-- Slider Container -->
+        <div id="testimonial-slider" class="relative overflow-hidden w-full h-[300px] md:h-[220px]">
+          <!-- Rendered Dynamically via JS -->
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button id="testimonial-prev" class="absolute left-4 top-1/2 -translate-y-1/2 text-luxury-slate/30 hover:text-luxury-gold text-xl focus:outline-none transition-colors duration-300" aria-label="Previous Testimonial">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="testimonial-next" class="absolute right-4 top-1/2 -translate-y-1/2 text-luxury-slate/30 hover:text-luxury-gold text-xl focus:outline-none transition-colors duration-300" aria-label="Next Testimonial">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Bullet Indicators -->
+        <div id="testimonial-bullets" class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          <!-- Populated Dynamically via JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT & FOOTER ==================== -->
+  <section id="contact" class="py-20 md:py-24 bg-luxury-slate text-white border-t border-luxury-gold/20">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        
+        <!-- Left Side: Contact Information -->
+        <div>
+          <span class="text-[0.65rem] md:text-[0.7rem] uppercase tracking-[0.3em] text-luxury-gold font-bold">Plan Your Escape</span>
+          <h2 class="font-serif text-3xl md:text-5xl font-light mt-3 mb-6">Contact Concierge</h2>
+          <div class="w-12 h-[1px] bg-luxury-gold mb-8"></div>
+          <p class="text-sm text-white/70 leading-relaxed font-light mb-10 max-w-md">
+            Whether you are booking a weekend getaway or planning a private beach celebration, our booking managers are available to assist you. Get in touch directly via Call, Email, or WhatsApp.
+          </p>
+
+          <!-- Contact Channels List -->
+          <div class="space-y-6 mb-10">
+            <div class="flex items-start gap-4">
+              <span class="w-10 h-10 border border-luxury-gold/30 flex justify-center items-center text-luxury-gold shrink-0 rounded-sm">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              <div>
+                <h4 class="text-[0.65rem] uppercase tracking-wider text-white/50 mb-1">Direct Call</h4>
+                <a id="contact-phone-link" href="tel:+919876543210" class="text-base font-serif text-white hover:text-luxury-gold transition-colors duration-300">
+                  +91 98765 43210
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="w-10 h-10 border border-luxury-gold/30 flex justify-center items-center text-luxury-gold shrink-0 rounded-sm">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <div>
+                <h4 class="text-[0.65rem] uppercase tracking-wider text-white/50 mb-1">Email Booking Desk</h4>
+                <a id="contact-email-link" href="mailto:bookings@bluehorizonvilla.com" class="text-base font-serif text-white hover:text-luxury-gold transition-colors duration-300 break-all">
+                  bookings@bluehorizonvilla.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <span class="w-10 h-10 border border-luxury-gold/30 flex justify-center items-center text-luxury-gold shrink-0 rounded-sm">
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+              <div>
+                <h4 class="text-[0.65rem] uppercase tracking-wider text-white/50 mb-1">Resort Address</h4>
+                <address id="contact-address-text" class="text-sm font-serif text-white not-italic font-light leading-relaxed">
+                  Plot 42, Beach Road, ECR, Chennai
+                </address>
+              </div>
+            </div>
+          </div>
+
+          <!-- Major CTA Buttons -->
+          <div class="flex flex-wrap gap-4">
+            <a id="footer-whatsapp-cta" href="#" target="_blank" class="px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold uppercase tracking-[0.2em] flex items-center gap-2 transition-colors duration-300 rounded-sm shadow-md">
+              <i class="fa-brands fa-whatsapp text-base"></i> Book on WhatsApp
+            </a>
+            <a id="footer-call-cta" href="tel:+919876543210" class="px-6 py-3.5 bg-transparent border border-luxury-gold hover:bg-luxury-gold hover:text-luxury-slate text-luxury-gold text-xs font-semibold uppercase tracking-[0.2em] flex items-center gap-2 transition-all duration-300 rounded-sm">
+              <i class="fa-solid fa-phone-volume text-xs"></i> Call Reservation Desk
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: Google Maps Embed -->
+        <div class="w-full">
+          <div class="border border-luxury-gold/30 p-2 md:p-3 bg-luxury-charcoal rounded-sm shadow-2xl h-[350px] md:h-[450px]">
+            <iframe 
+              id="google-maps-embed" 
+              src="about:blank" 
+              class="w-full h-full border-0 rounded-sm filter grayscale contrast-125 hover:grayscale-0 transition-all duration-700" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Villa Map Location">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Branding & Copyright -->
+      <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-center gap-4 text-xs text-white/40 font-light">
+        <div>
+          <p>&copy; 2026 The Blue Horizon Villa. All rights reserved.</p>
+        </div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-luxury-gold transition-colors duration-300">Privacy Policy</a>
+          <a href="#" class="hover:text-luxury-gold transition-colors duration-300">Booking Terms</a>
+        </div>
+        <div>
+          <p class="tracking-wide">Designed for Discerning Travelers</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script>
+    // =========================================================================
+    // CONFIGURATION & FALLBACK DATA SYSTEM
+    // =========================================================================
+    
+    // To load data locally, keep this as './data.json'
+    // To load from Google Drive in the future, replace with: 'https://docs.google.com/uc?export=download&id=YOUR_FILE_ID'
+    const CONFIG_URL = './data.json';
+
+    // Robust default fallback data in case Google Drive fails, loading is offline,
+    // or placeholder is not yet configured. Enables instant preview.
+    const FALLBACK_DATA = {
+      "villaName": "The Farm Villa - Cm Residency",
+      "currency": "₹",
+      "pricing": {
+        "weekdayPrice": "12,000 / night",
+        "weekendPrice": "16,000 / night"
+      },
+      "contact": {
+        "phone": "+91 84891 46404",
+        "whatsappNumber": "918489146404",
+        "email": "vigneesh2630@gmail.com",
+        "address": "The Farm VILLA - CM RESIDENCY, Pondicherry",
+        "googleMapsEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15651.981881682664!2d79.7567462!3d11.9114017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a53610061409ed9%3A0xaf2afc0fcbf0ce5d!2sThe%20Farm%20VILLA%20-%20CM%20RESIDENCY!5e0!3m2!1sen!2sin!4v1720165842851!5m2!1sen!2sin"
+      },
+      "offers": [
+        { 
+          "title": "Weekday Special", 
+          "discount": "25% OFF", 
+          "rules": "Book a 2-night weekday stay and get a 25% discount on the total price." 
+        },
+        { 
+          "title": "Referral Bonus", 
+          "discount": "Flat ₹1,000 OFF", 
+          "rules": "Get a direct ₹1,000 discount when referred by our existing customer." 
+        },
+        { 
+          "title": "Extended Luxury Escape", 
+          "discount": "Stay 4, Pay 3", 
+          "rules": "Book a 4-night stay, and the last night is on us." 
+        }
+      ],
+      "gallery": {
+        "images": [
+          "./images/resort_image.jpg",
+          "./images/privatepool.jpg",
+          "./images/nightpool.jpg",
+          "./images/night_poolll.jpg",
+          "./images/pool2.jpg",
+          "./images/pool_open_theatre.jpg",
+          "./images/hall_projector.jpg",
+          "./images/projector.jpg",
+          "./images/hall.jpg",
+          "./images/bedrooma.jpg",
+          "./images/bedroomb.jpg"
+        ],
+        "videos": [
+          "./videos/resort.mp4"
+        ]
+      },
+      "bookedDates": [
+        "2026-07-10",
+        "2026-07-11",
+        "2026-07-18",
+        "2026-07-19",
+        "2026-07-24",
+        "2026-07-25"
+      ],
+      "testimonials": [
+        { 
+          "guestName": "Rohan & Family", 
+          "rating": 5, 
+          "comment": "Absolutely breathtaking property! The beachfront views, private pool, and exceptional hospitality made this our best family vacation ever. Every detail felt bespoke and luxurious." 
+        },
+        { 
+          "guestName": "Anya Sen", 
+          "rating": 5, 
+          "comment": "An oasis of calm and refinement. The staff was incredibly attentive, the design is modern yet warm, and watching the sunrise from the master bedroom was unforgettable. We will be back!" 
+        },
+        { 
+          "guestName": "Vikram Malhotra", 
+          "rating": 5, 
+          "comment": "A true five-star experience. The kitchen was stocked with essentials, the infinity pool is pristine, and the direct beach access was the highlight. Ideal for hosting a private retreat." 
+        }
+      ]
+    };
+
+    // State object to hold dynamic data
+    let appData = FALLBACK_DATA;
+
+    // =========================================================================
+    // GOOGLE DRIVE LINK NORMALIZATION UTILITIES
+    // =========================================================================
+    
+    // Normalizes Google Drive links for standard JSON downloads
+    function getGoogleDriveJsonUrl(url) {
+      if (!url || typeof url !== 'string') return '';
+      if (!url.includes('drive.google.com')) return url;
+      
+      const fileIdMatch = url.match(/(?:\/d\/|id=)([\w-]+)/);
+      if (fileIdMatch && fileIdMatch[1]) {
+        return `https://docs.google.com/uc?export=download&id=${fileIdMatch[1]}`;
+      }
+      return url;
+    }
+
+    // Normalizes Google Drive image links using the high-performance user content URL schema
+    // avoids cookie/cors limits and virus-scan block screens
+    function getGoogleDriveImageUrl(url) {
+      if (!url || typeof url !== 'string') return '';
+      
+      // If it's already using user content or not a Drive link, return it
+      if (url.includes('googleusercontent.com') || !url.includes('drive.google.com')) {
+        return url;
+      }
+      
+      const fileIdMatch = url.match(/(?:\/d\/|id=)([\w-]+)/);
+      if (fileIdMatch && fileIdMatch[1]) {
+        return `https://lh3.googleusercontent.com/d/${fileIdMatch[1]}`;
+      }
+      return url;
+    }
+
+    // Parses walkthrough video links (Youtube, Vimeo, Direct link) and returns appropriate embed/player attributes
+    function parseVideoUrl(url) {
+      if (!url || typeof url !== 'string') return { type: 'unknown', url: '' };
+
+      // YouTube support
+      const ytMatch = url.match(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i);
+      if (ytMatch && ytMatch[1]) {
+        return {
+          type: 'youtube',
+          url: `https://www.youtube.com/embed/${ytMatch[1]}?autoplay=0&mute=1&rel=0`
+        };
+      }
+
+      // Vimeo support
+      const vimeoMatch = url.match(/(?:vimeo\.com\/|player\.vimeo\.com\/video\/)([0-9]+)/i);
+      if (vimeoMatch && vimeoMatch[1]) {
+        return {
+          type: 'vimeo',
+          url: `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=0&muted=1&byline=0&portrait=0`
+        };
+      }
+
+      // Google Drive Video Support
+      if (url.includes('drive.google.com')) {
+        const gdMatch = url.match(/(?:\/d\/|id=)([\w-]+)/);
+        if (gdMatch && gdMatch[1]) {
+          return {
+            type: 'drive',
+            url: `https://drive.google.com/file/d/${gdMatch[1]}/preview`
+          };
+        }
+      }
+
+      // Fallback: direct MP4 video link or external source
+      return {
+        type: 'direct',
+        url: url
+      };
+    }
+
+    // =========================================================================
+    // SYSTEM NOTIFICATION / TOAST UTILITIES
+    // =========================================================================
+    function showToast(message, type = 'info', duration = 6000) {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `transform translate-y-4 opacity-0 transition-all duration-500 flex items-start gap-3 p-4 rounded-sm border shadow-lg ${
+        type === 'success' 
+          ? 'bg-emerald-950/90 text-emerald-100 border-emerald-500/30' 
+          : type === 'error'
+          ? 'bg-amber-950/90 text-amber-100 border-amber-500/30'
+          : 'bg-luxury-slate/95 text-white border-luxury-gold/30'
+      }`;
+
+      const iconClass = type === 'success' 
+        ? 'fa-circle-check text-emerald-400' 
+        : type === 'error'
+        ? 'fa-circle-exclamation text-amber-400'
+        : 'fa-circle-info text-luxury-gold';
+
+      toast.innerHTML = `
+        <span class="text-lg shrink-0 mt-0.5"><i class="fa-solid ${iconClass}"></i></span>
+        <div class="flex-1 text-xs leading-relaxed font-light">
+          ${message}
+        </div>
+        <button class="text-white/40 hover:text-white transition-colors duration-300 ml-1 text-sm focus:outline-none" onclick="this.parentElement.remove()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      `;
+
+      container.appendChild(toast);
+      
+      // Trigger animation
+      setTimeout(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      }, 50);
+
+      // Self destruct
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-[-10px]');
+        setTimeout(() => {
+          toast.remove();
+        }, 500);
+      }, duration);
+    }
+
+    // =========================================================================
+    // DATA BINDING AND RENDERING DYNAMICS
+    // =========================================================================
+    function renderWebsiteContent() {
+      // 1. Villa Name (Navbar Brand & Page Title & Hero)
+      document.title = `${appData.villaName} | Luxury Private Resort`;
+      
+      const nameParts = appData.villaName.split(/\s*-\s*/);
+      const mainTitle = nameParts[0] || 'The Farm Villa';
+      const subTitle = nameParts[1] || '';
+
+      // Render Brand Logo Container
+      const logoContainer = document.getElementById('brand-logo-container');
+      if (logoContainer) {
+        if (subTitle) {
+          logoContainer.innerHTML = `
+            <span class="font-serif text-xl md:text-2xl font-light tracking-[0.15em] uppercase hover:text-luxury-gold transition-colors duration-300">
+              ${mainTitle}
+            </span>
+            <span class="text-[0.55rem] md:text-[0.6rem] uppercase tracking-[0.3em] text-luxury-gold font-bold -mt-1 block">
+              ${subTitle}
+            </span>
+          `;
+        } else {
+          logoContainer.innerHTML = `
+            <span class="font-serif text-xl md:text-2xl font-light tracking-[0.15em] uppercase hover:text-luxury-gold transition-colors duration-300">
+              ${mainTitle}
+            </span>
+          `;
+        }
+      }
+
+      // Update Hero Section Title & Tagline
+      const heroTitleEl = document.getElementById('hero-title');
+      if (heroTitleEl) {
+        heroTitleEl.textContent = mainTitle;
+        if (subTitle) {
+          const taglineEl = heroTitleEl.previousElementSibling;
+          if (taglineEl) {
+            taglineEl.innerHTML = `${subTitle.toUpperCase()} <span class="mx-2 text-white/40">•</span> AN EXCLUSIVE SANCTUARY`;
+          }
+        }
+      }
+
+      // 2. Hero Background Setup (First Image in Gallery)
+      const heroBg = document.getElementById('hero-bg');
+      if (appData.gallery && appData.gallery.images && appData.gallery.images.length > 0) {
+        const heroImgUrl = getGoogleDriveImageUrl(appData.gallery.images[0]);
+        heroBg.style.backgroundImage = `url('${heroImgUrl}')`;
+      } else {
+        heroBg.style.backgroundImage = `url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80')`;
+      }
+
+      // 3. Setup Pricing display
+      const currency = appData.currency || '₹';
+      document.getElementById('weekday-currency').textContent = currency;
+      document.getElementById('weekend-currency').textContent = currency;
+
+      // Extract numbers or clean text from pricing strings
+      const extractPriceDigits = (str) => {
+        if (!str) return '12,000';
+        const match = str.match(/[\d,.]+/);
+        return match ? match[0] : str;
+      };
+
+      document.getElementById('weekday-price').textContent = extractPriceDigits(appData.pricing.weekdayPrice);
+      document.getElementById('weekend-price').textContent = extractPriceDigits(appData.pricing.weekendPrice);
+
+      // 4. Contact Details Rendering
+      const cleanPhone = appData.contact.phone || '+91 84891 46404';
+      const rawWhatsApp = appData.contact.whatsappNumber || '918489146404';
+      const cleanEmail = appData.contact.email || 'vigneesh2630@gmail.com';
+      const cleanAddress = appData.contact.address || 'The Farm VILLA - CM RESIDENCY, Pondicherry';
+      const cleanMapUrl = appData.contact.googleMapsEmbedUrl || '';
+
+      document.getElementById('contact-phone-link').textContent = cleanPhone;
+      document.getElementById('contact-phone-link').href = `tel:${cleanPhone.replace(/\s+/g, '')}`;
+      document.getElementById('contact-email-link').textContent = cleanEmail;
+      document.getElementById('contact-email-link').href = `mailto:${cleanEmail}`;
+      document.getElementById('contact-address-text').textContent = cleanAddress;
+      
+      if (cleanMapUrl) {
+        document.getElementById('google-maps-embed').src = cleanMapUrl;
+      }
+
+      // 5. WhatsApp API Link Generator
+      const waBaseMessage = `Hello Concierge, I am interested in checking availability and booking ${appData.villaName}.`;
+      const encodedWaMsg = encodeURIComponent(waBaseMessage);
+      const waEndpoint = `https://wa.me/${rawWhatsApp}?text=${encodedWaMsg}`;
+      
+      document.getElementById('header-whatsapp-cta').href = waEndpoint;
+      document.getElementById('mobile-whatsapp-cta').href = waEndpoint;
+      document.getElementById('availability-whatsapp-cta').href = waEndpoint;
+      document.getElementById('footer-whatsapp-cta').href = waEndpoint;
+      document.getElementById('footer-call-cta').href = `tel:${cleanPhone.replace(/\s+/g, '')}`;
+
+      // 6. Special Offers Grid Rendering
+      const offersGrid = document.getElementById('offers-grid');
+      offersGrid.innerHTML = '';
+      if (appData.offers && appData.offers.length > 0) {
+        appData.offers.forEach(offer => {
+          const card = document.createElement('div');
+          card.className = 'bg-white border border-dashed border-luxury-gold/50 p-8 text-center flex flex-col justify-between items-center rounded-sm hover:-translate-y-1 transition-all duration-300 relative';
+          card.innerHTML = `
+            <!-- Voucher notch details -->
+            <div class="absolute left-[-8px] top-1/2 -translate-y-1/2 w-4 h-8 bg-luxury-cream border-r border-luxury-gold/30 rounded-r-full"></div>
+            <div class="absolute right-[-8px] top-1/2 -translate-y-1/2 w-4 h-8 bg-luxury-cream border-l border-luxury-gold/30 rounded-l-full"></div>
+            <div>
+              <span class="text-[0.6rem] uppercase tracking-[0.22em] text-luxury-gold font-bold block mb-2">${offer.title}</span>
+              <span class="font-serif text-3xl text-luxury-slate font-semibold block mb-4">${offer.discount}</span>
+              <p class="text-xs text-luxury-slate/70 font-light leading-relaxed mb-6 px-4">${offer.rules}</p>
+            </div>
+            <a href="#availability" class="text-[0.65rem] uppercase tracking-[0.2em] font-semibold text-luxury-gold hover:text-luxury-goldDark transition-colors duration-300 relative after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-[1px] after:bg-luxury-gold hover:after:bg-luxury-goldDark">Claim Offer</a>
+          `;
+          offersGrid.appendChild(card);
+        });
+      } else {
+        offersGrid.innerHTML = `<p class="col-span-full text-center text-xs text-luxury-slate/60 font-light">No special offers at this time. Inquire on WhatsApp for seasonal deals.</p>`;
+      }
+
+      // 7. Gallery Grid Rendering
+      const galleryGrid = document.getElementById('gallery-grid');
+      galleryGrid.innerHTML = '';
+      if (appData.gallery && appData.gallery.images && appData.gallery.images.length > 0) {
+        appData.gallery.images.forEach((imgSrc, index) => {
+          const normalizedImg = getGoogleDriveImageUrl(imgSrc);
+          const wrapper = document.createElement('div');
+          wrapper.className = 'relative zoom-container overflow-hidden aspect-[4/3] bg-luxury-charcoal border border-white/5 cursor-pointer rounded-sm';
+          wrapper.setAttribute('onclick', `openLightbox(${index})`);
+          
+          wrapper.innerHTML = `
+            <img src="${normalizedImg}" alt="${appData.villaName} Gallery Image ${index + 1}" class="w-full h-full object-cover zoom-img select-none" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-luxury-slate/85 via-luxury-slate/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+              <span class="text-[0.6rem] uppercase tracking-[0.3em] text-luxury-gold font-bold mb-1">Villa Showcase</span>
+              <h4 class="font-serif text-base text-white font-light">View Residence Space</h4>
+            </div>
+          `;
+          galleryGrid.appendChild(wrapper);
+        });
+      } else {
+        galleryGrid.innerHTML = `<p class="col-span-full text-center text-xs text-white/50 py-10">Gallery images loading or not configured.</p>`;
+      }
+
+      // 8. Walkthrough Video Rendering
+      const videoContainer = document.getElementById('video-container');
+      videoContainer.innerHTML = '';
+      if (appData.gallery && appData.gallery.videos && appData.gallery.videos.length > 0) {
+        const parsed = parseVideoUrl(appData.gallery.videos[0]);
+        if (parsed.type === 'youtube' || parsed.type === 'vimeo' || parsed.type === 'drive') {
+          videoContainer.innerHTML = `
+            <iframe 
+              src="${parsed.url}" 
+              class="w-full h-full border-0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen
+              title="Villa Video Walkthrough">
+            </iframe>
+          `;
+        } else if (parsed.type === 'direct') {
+          videoContainer.innerHTML = `
+            <video controls muted class="w-full h-full object-cover" poster="${getGoogleDriveImageUrl(appData.gallery.images[1] || '')}">
+              <source src="${parsed.url}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          `;
+        } else {
+          videoContainer.innerHTML = `
+            <div class="w-full h-full flex flex-col justify-center items-center p-6 text-center text-white/55">
+              <i class="fa-regular fa-circle-play text-4xl mb-4 text-luxury-gold"></i>
+              <p class="text-xs font-light">Walkthrough video link not configured or unavailable.</p>
+            </div>
+          `;
+        }
+      }
+
+      // 9. Testimonials Slider Rendering
+      renderTestimonials();
+
+      // 10. Availability Calendar Rendering
+      buildCalendars();
+    }
+
+    // =========================================================================
+    // DYNAMIC LIVE CALENDAR ENGINE
+    // =========================================================================
+    
+    // Check if a specific date object falls in the list of bookedDates
+    function isDateBooked(date) {
+      if (!appData.bookedDates || !Array.isArray(appData.bookedDates)) return false;
+      
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const dateString = `${year}-${month}-${day}`;
+      
+      return appData.bookedDates.includes(dateString);
+    }
+
+    // Dynamic generation of calendar days for a specific year/month into a specific HTML selector
+    function populateMonthDays(year, month, elementId) {
+      const daysContainer = document.getElementById(elementId);
+      daysContainer.innerHTML = '';
+
+      // First day of month & number of days in month
+      const firstDayIndex = new Date(year, month, 1).getDay();
+      const totalDays = new Date(year, month + 1, 0).getDate();
+
+      // Add empty spaces for padding
+      for (let i = 0; i < firstDayIndex; i++) {
+        const spacer = document.createElement('div');
+        spacer.className = 'w-full aspect-square';
+        daysContainer.appendChild(spacer);
+      }
+
+      const today = new Date();
+      today.setHours(0,0,0,0);
+
+      // Create cells for days
+      for (let day = 1; day <= totalDays; day++) {
+        const currentCheck = new Date(year, month, day);
+        const dayCell = document.createElement('div');
+        dayCell.className = 'w-full aspect-square flex justify-center items-center text-xs rounded-sm relative transition-all duration-300 select-none';
+        dayCell.textContent = day;
+
+        const isBooked = isDateBooked(currentCheck);
+        const isPast = currentCheck < today;
+
+        if (isPast) {
+          dayCell.className += ' text-white/20 line-through cursor-not-allowed';
+        } else if (isBooked) {
+          // Occupied styling: muted slate background, gold borders, subtle stripe pattern
+          dayCell.className += ' bg-luxury-slate text-luxury-gold border border-luxury-gold/50 cursor-not-allowed relative overflow-hidden font-semibold';
+          dayCell.style.backgroundImage = 'linear-gradient(45deg, rgba(212,175,55,0.08) 25%, transparent 25%, transparent 50%, rgba(212,175,55,0.08) 50%, rgba(212,175,55,0.08) 75%, transparent 75%, transparent)';
+          dayCell.style.backgroundSize = '8px 8px';
+          dayCell.title = "Booked / Occupied";
+        } else {
+          // Available styling
+          dayCell.className += ' bg-white/5 border border-white/10 text-white/90 font-light';
+        }
+
+        daysContainer.appendChild(dayCell);
+      }
+    }
+
+    // Build Calendars for Current Month & Next Month based on system clock
+    function buildCalendars() {
+      // Calculate active months
+      // If mock date in metadata says July 2026, let's lock calendars to July 2026 and August 2026 for demonstration
+      // Otherwise use the current system time
+      const testDate = new Date("2026-07-05T00:00:00");
+      let baseDate = new Date();
+      
+      // If current year is less than or equal to 2026, set baseDate to July 2026 for alignment with fallback dates
+      if (baseDate.getFullYear() < 2026 || (baseDate.getFullYear() === 2026 && baseDate.getMonth() < 6)) {
+        baseDate = testDate;
+      }
+
+      const curYear = baseDate.getFullYear();
+      const curMonth = baseDate.getMonth(); // 6 = July
+
+      const nextMonthDate = new Date(curYear, curMonth + 1, 1);
+      const nextYear = nextMonthDate.getFullYear();
+      const nextMonth = nextMonthDate.getMonth(); // 7 = August
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      // Update UI headings
+      document.getElementById('current-month-name').textContent = `${monthNames[curMonth]} ${curYear}`;
+      document.getElementById('next-month-name').textContent = `${monthNames[nextMonth]} ${nextYear}`;
+
+      // Populate grids
+      populateMonthDays(curYear, curMonth, 'current-month-days');
+      populateMonthDays(nextYear, nextMonth, 'next-month-days');
+
+      // Calendar initialized
+      const todayString = baseDate.toISOString().split('T')[0];
+    }
+
+
+
+    // =========================================================================
+    // LIGHTBOX GALLERY ENGINE
+    // =========================================================================
+    let currentLightboxIdx = 0;
+
+    function openLightbox(index) {
+      if (!appData.gallery || !appData.gallery.images || !appData.gallery.images[index]) return;
+      
+      currentLightboxIdx = index;
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      const caption = document.getElementById('lightbox-caption');
+      
+      const normalizedImg = getGoogleDriveImageUrl(appData.gallery.images[index]);
+      img.src = normalizedImg;
+      caption.textContent = `Showcase Residence Image ${index + 1} of ${appData.gallery.images.length}`;
+
+      lightbox.classList.remove('pointer-events-none');
+      lightbox.classList.add('opacity-100');
+      document.body.style.overflow = 'hidden'; // Lock scrolling
+    }
+
+    function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.add('pointer-events-none');
+      lightbox.classList.remove('opacity-100');
+      document.body.style.overflow = ''; // Unlock scrolling
+    }
+
+    function nextLightbox() {
+      if (!appData.gallery || !appData.gallery.images) return;
+      currentLightboxIdx = (currentLightboxIdx + 1) % appData.gallery.images.length;
+      openLightbox(currentLightboxIdx);
+    }
+
+    function prevLightbox() {
+      if (!appData.gallery || !appData.gallery.images) return;
+      currentLightboxIdx = (currentLightboxIdx - 1 + appData.gallery.images.length) % appData.gallery.images.length;
+      openLightbox(currentLightboxIdx);
+    }
+
+    // Lightbox event listeners
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    document.getElementById('lightbox-next').addEventListener('click', nextLightbox);
+    document.getElementById('lightbox-prev').addEventListener('click', prevLightbox);
+    
+    // Close lightbox on click outside the image
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox' || e.target.id === 'lightbox-img' || e.target.parentElement.id === 'lightbox-img') {
+        if (e.target.id === 'lightbox') closeLightbox();
+      }
+    });
+
+    // Keyboard support for lightbox
+    document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox.classList.contains('opacity-100')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') nextLightbox();
+        if (e.key === 'ArrowLeft') prevLightbox();
+      }
+    });
+
+    // =========================================================================
+    // TESTIMONIALS SLIDER ENGINE
+    // =========================================================================
+    let currentTestimonialIdx = 0;
+    let testimonialTimer = null;
+
+    function renderTestimonials() {
+      const slider = document.getElementById('testimonial-slider');
+      const bullets = document.getElementById('testimonial-bullets');
+      
+      slider.innerHTML = '';
+      bullets.innerHTML = '';
+
+      if (!appData.testimonials || appData.testimonials.length === 0) {
+        slider.innerHTML = `<div class="text-center text-xs text-luxury-slate/60 font-light">No client feedback published.</div>`;
+        return;
+      }
+
+      appData.testimonials.forEach((testi, index) => {
+        // Create testimonial slide
+        const slide = document.createElement('div');
+        slide.className = `absolute inset-0 flex flex-col justify-center items-center text-center transition-all duration-700 ease-in-out transform ${
+          index === 0 ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
+        }`;
+        slide.id = `testimonial-slide-${index}`;
+
+        // Build SVG Stars
+        let starsHTML = '';
+        for (let s = 0; s < 5; s++) {
+          starsHTML += `
+            <svg class="w-4 h-4 ${s < testi.rating ? 'text-luxury-gold' : 'text-gray-200'} fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+            </svg>
+          `;
+        }
+
+        slide.innerHTML = `
+          <div class="flex space-x-1 mb-4 md:mb-6 justify-center">${starsHTML}</div>
+          <blockquote class="font-serif text-lg md:text-xl text-luxury-slate italic max-w-2xl px-6 leading-relaxed mb-6">
+            "${testi.comment}"
+          </blockquote>
+          <cite class="text-[0.65rem] uppercase tracking-[0.25em] text-luxury-gold font-bold not-italic">
+            — ${testi.guestName}
+          </cite>
+        `;
+        slider.appendChild(slide);
+
+        // Create navigation bullet
+        const bullet = document.createElement('button');
+        bullet.className = `w-2 h-2 rounded-full border border-luxury-gold transition-all duration-300 ${
+          index === 0 ? 'bg-luxury-gold w-4' : 'bg-transparent'
+        }`;
+        bullet.setAttribute('aria-label', `Go to testimonial slide ${index + 1}`);
+        bullet.setAttribute('onclick', `goToTestimonial(${index})`);
+        bullet.id = `testimonial-bullet-${index}`;
+        bullets.appendChild(bullet);
+      });
+
+      currentTestimonialIdx = 0;
+      startTestimonialAutoPlay();
+    }
+
+    function showTestimonialSlide(index) {
+      const slidesCount = appData.testimonials.length;
+      if (slidesCount <= 1) return;
+
+      const prevSlide = document.getElementById(`testimonial-slide-${currentTestimonialIdx}`);
+      const prevBullet = document.getElementById(`testimonial-bullet-${currentTestimonialIdx}`);
+      
+      currentTestimonialIdx = index;
+      
+      const newSlide = document.getElementById(`testimonial-slide-${currentTestimonialIdx}`);
+      const newBullet = document.getElementById(`testimonial-bullet-${currentTestimonialIdx}`);
+
+      // Transition slides
+      if (prevSlide && newSlide) {
+        prevSlide.classList.add('opacity-0', 'translate-x-[-30px]');
+        prevSlide.classList.remove('opacity-100', 'translate-x-0', 'translate-x-full');
+        
+        newSlide.classList.remove('opacity-0', 'translate-x-full', 'translate-x-[-30px]');
+        newSlide.classList.add('opacity-100', 'translate-x-0');
+      }
+
+      // Update bullets
+      if (prevBullet && newBullet) {
+        prevBullet.classList.remove('bg-luxury-gold', 'w-4');
+        newBullet.classList.add('bg-luxury-gold', 'w-4');
+      }
+    }
+
+    function nextTestimonial() {
+      const count = appData.testimonials.length;
+      if (count <= 1) return;
+      const nextIdx = (currentTestimonialIdx + 1) % count;
+      showTestimonialSlide(nextIdx);
+    }
+
+    function prevTestimonial() {
+      const count = appData.testimonials.length;
+      if (count <= 1) return;
+      const prevIdx = (currentTestimonialIdx - 1 + count) % count;
+      showTestimonialSlide(prevIdx);
+    }
+
+    function goToTestimonial(index) {
+      clearInterval(testimonialTimer);
+      showTestimonialSlide(index);
+      startTestimonialAutoPlay();
+    }
+
+    function startTestimonialAutoPlay() {
+      clearInterval(testimonialTimer);
+      if (appData.testimonials && appData.testimonials.length > 1) {
+        testimonialTimer = setInterval(nextTestimonial, 7000); // cycle every 7 seconds
+      }
+    }
+
+    // Testimonial Nav Clicks
+    document.getElementById('testimonial-next').addEventListener('click', () => {
+      clearInterval(testimonialTimer);
+      nextTestimonial();
+      startTestimonialAutoPlay();
+    });
+
+    document.getElementById('testimonial-prev').addEventListener('click', () => {
+      clearInterval(testimonialTimer);
+      prevTestimonial();
+      startTestimonialAutoPlay();
+    });
+
+    // =========================================================================
+    // INTERACTION AND STICKY MENU HANDLING
+    // =========================================================================
+    
+    // Sticky Header Scroll Controller
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 50) {
+        header.classList.add('glass-nav', 'py-4');
+        header.classList.remove('py-6');
+      } else {
+        header.classList.remove('glass-nav', 'py-4');
+        header.classList.add('py-6');
+      }
+    });
+
+    // Mobile Menu Controls
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileCloseBtn = document.getElementById('mobile-close-btn');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle('translate-x-full');
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    mobileCloseBtn.addEventListener('click', toggleMobileMenu);
+    
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+      });
+    });
+
+    // =========================================================================
+    // SYSTEM INITIALIZATION AND API FETCH ENGINE
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      const loadingOverlay = document.getElementById('loading-overlay');
+      
+      // Attempt to load from Google Drive
+      showToast("Establishing connection to Google Drive...", "info");
+      
+      const normalizedConfigUrl = getGoogleDriveJsonUrl(CONFIG_URL);
+
+      fetch(normalizedConfigUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Google Drive returned server error status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          // Verify critical schema structures
+          if (!data.villaName || !data.pricing || !data.contact) {
+            throw new Error("JSON fetched, but config schema does not match specifications.");
+          }
+          
+          appData = data;
+          showToast("Successfully synchronized configuration with Google Drive data!", "success");
+          
+          // Render content
+          renderWebsiteContent();
+          
+          // Fadeout Loading screen
+          setTimeout(() => {
+            loadingOverlay.classList.add('opacity-0', 'pointer-events-none');
+          }, 600);
+        })
+        .catch(err => {
+          // Seamless degradation to beautiful sample data
+          console.warn("Failed fetching from Google Drive: ", err.message);
+          showToast("Google Drive link unconfigured or blocked by CORS. Running with beautiful fallback dataset.", "error", 9000);
+          
+          // Render fallback content
+          appData = FALLBACK_DATA;
+          renderWebsiteContent();
+          
+          // Fadeout Loading screen
+          setTimeout(() => {
+            loadingOverlay.classList.add('opacity-0', 'pointer-events-none');
+          }, 600);
+        });
+    });
+  </script>
+</body>
+</html>
