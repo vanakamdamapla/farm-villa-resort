@@ -933,9 +933,6 @@
 
       // 9. Testimonials Slider Rendering
       renderTestimonials();
-
-      // 10. Availability Calendar Rendering
-      buildCalendars();
     }
 
     // =========================================================================
@@ -1002,39 +999,8 @@
 
     // Build Calendars for Current Month & Next Month based on system clock
     function buildCalendars() {
-      // Calculate active months
-      // If mock date in metadata says July 2026, let's lock calendars to July 2026 and August 2026 for demonstration
-      // Otherwise use the current system time
-      const testDate = new Date("2026-07-05T00:00:00");
-      let baseDate = new Date();
-      
-      // If current year is less than or equal to 2026, set baseDate to July 2026 for alignment with fallback dates
-      if (baseDate.getFullYear() < 2026 || (baseDate.getFullYear() === 2026 && baseDate.getMonth() < 6)) {
-        baseDate = testDate;
-      }
-
-      const curYear = baseDate.getFullYear();
-      const curMonth = baseDate.getMonth(); // 6 = July
-
-      const nextMonthDate = new Date(curYear, curMonth + 1, 1);
-      const nextYear = nextMonthDate.getFullYear();
-      const nextMonth = nextMonthDate.getMonth(); // 7 = August
-
-      const monthNames = [
-        "January", "February", "March", "April", "May", "June", 
-        "July", "August", "September", "October", "November", "December"
-      ];
-
-      // Update UI headings
-      document.getElementById('current-month-name').textContent = `${monthNames[curMonth]} ${curYear}`;
-      document.getElementById('next-month-name').textContent = `${monthNames[nextMonth]} ${nextYear}`;
-
-      // Populate grids
-      populateMonthDays(curYear, curMonth, 'current-month-days');
-      populateMonthDays(nextYear, nextMonth, 'next-month-days');
-
-      // Calendar initialized
-      const todayString = baseDate.toISOString().split('T')[0];
+      // Calendar section removed
+      return;
     }
 
 
