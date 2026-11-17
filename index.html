@@ -1272,49 +1272,47 @@
     // =========================================================================
     window.addEventListener('DOMContentLoaded', () => {
       const loadingOverlay = document.getElementById('loading-overlay');
-      
-      // Attempt to load from Google Drive
-      showToast("Establishing connection to Google Drive...", "info");
-      
+
+      // Safety net: always hide loading after 4 seconds no matter what
+      const safetyTimer = setTimeout(() => {
+        appData = FALLBACK_DATA;
+        renderWebsiteContent();
+        loadingOverlay.classList.add('opacity-0', 'pointer-events-none');
+      }, 4000);
+
       const normalizedConfigUrl = getGoogleDriveJsonUrl(CONFIG_URL);
 
-      fetch(normalizedConfigUrl)
+      // Add a 5-second timeout to the fetch so it never hangs forever
+      const fetchWithTimeout = (url, ms) => {
+        const controller = new AbortController();
+        const id = setTimeout(() => controller.abort(), ms);
+        return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(id));
+      };
+
+      fetchWithTimeout(normalizedConfigUrl, 5000)
         .then(response => {
-          if (!response.ok) {
-            throw new Error(`Google Drive returned server error status: ${response.status}`);
-          }
+          if (!response.ok) throw new Error(`Server error: ${response.status}`);
           return response.json();
         })
         .then(data => {
-          // Verify critical schema structures
           if (!data.villaName || !data.pricing || !data.contact) {
-            throw new Error("JSON fetched, but config schema does not match specifications.");
+            throw new Error("Config schema mismatch.");
           }
-          
+          clearTimeout(safetyTimer);
           appData = data;
-          showToast("Successfully synchronized configuration with Google Drive data!", "success");
-          
-          // Render content
           renderWebsiteContent();
-          
-          // Fadeout Loading screen
           setTimeout(() => {
             loadingOverlay.classList.add('opacity-0', 'pointer-events-none');
-          }, 600);
+          }, 500);
         })
         .catch(err => {
-          // Seamless degradation to beautiful sample data
-          console.warn("Failed fetching from Google Drive: ", err.message);
-          showToast("Google Drive link unconfigured or blocked by CORS. Running with beautiful fallback dataset.", "error", 9000);
-          
-          // Render fallback content
+          console.warn("Data fetch failed, using fallback:", err.message);
+          clearTimeout(safetyTimer);
           appData = FALLBACK_DATA;
           renderWebsiteContent();
-          
-          // Fadeout Loading screen
           setTimeout(() => {
             loadingOverlay.classList.add('opacity-0', 'pointer-events-none');
-          }, 600);
+          }, 500);
         });
     });
   </script>
